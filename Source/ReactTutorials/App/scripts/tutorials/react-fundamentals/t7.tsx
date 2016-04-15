@@ -2,11 +2,13 @@
 import ReactDOM from 'react-dom'
 
 class App extends React.Component<any, any> {
+    // refs needs to be redefined to include red, green, and blue in order to satisfy the TypeScript compiler
+    // in the update method
     refs: {
-        [key: string]: (Element),
-        red: (HTMLInputElement),
-        green: (HTMLInputElement),
-        blue: (HTMLInputElement),
+        [key: string]: (React.ReactInstance);
+        red: (Slider);
+        green: (Slider);
+        blue: (Slider);
     }
 
     constructor() {
@@ -21,9 +23,9 @@ class App extends React.Component<any, any> {
 
     update(e) {
         this.setState({
-            red: ReactDOM.findDOMNode<HTMLInputElement>(this.refs.red).value,
-            green: ReactDOM.findDOMNode<HTMLInputElement>(this.refs.green).value,
-            blue: ReactDOM.findDOMNode<HTMLInputElement>(this.refs.blue).value
+            red: ReactDOM.findDOMNode<any>(this.refs.red.refs.inp).value,
+            green: ReactDOM.findDOMNode<any>(this.refs.green.refs.inp).value,
+            blue: ReactDOM.findDOMNode<any>(this.refs.blue.refs.inp).value
         });
     }
 
@@ -39,9 +41,18 @@ class App extends React.Component<any, any> {
 }
 
 class Slider extends React.Component<any, any> {
+    // refs needs to be redefined to include inp in order to satisfy the TypeScript compiler
+    // in the App.update method
+    refs: {
+        [key: string]: (React.ReactInstance);
+        inp: (HTMLInputElement);
+    }
+
     render() {
         return (
-            <input type="range" min="0" max="255" onChange={this.props.update } />
+            <div>
+                <input ref="inp" type="range" min="0" max="255" onChange={this.props.update } />
+            </div>
         );
     }
 }

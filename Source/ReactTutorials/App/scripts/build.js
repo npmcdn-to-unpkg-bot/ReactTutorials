@@ -119,9 +119,9 @@ define("react-fundamentals/t7", ["require", "exports", 'react', 'react-dom'], fu
         }
         App.prototype.update = function (e) {
             this.setState({
-                red: react_dom_5.default.findDOMNode(this.refs.red).value,
-                green: react_dom_5.default.findDOMNode(this.refs.green).value,
-                blue: react_dom_5.default.findDOMNode(this.refs.blue).value
+                red: react_dom_5.default.findDOMNode(this.refs.red.refs.inp).value,
+                green: react_dom_5.default.findDOMNode(this.refs.green.refs.inp).value,
+                blue: react_dom_5.default.findDOMNode(this.refs.blue.refs.inp).value
             });
         };
         App.prototype.render = function () {
@@ -135,7 +135,7 @@ define("react-fundamentals/t7", ["require", "exports", 'react', 'react-dom'], fu
             _super.apply(this, arguments);
         }
         Slider.prototype.render = function () {
-            return (react_5.default.createElement("input", {type: "range", min: "0", max: "255", onChange: this.props.update}));
+            return (react_5.default.createElement("div", null, react_5.default.createElement("input", {ref: "inp", type: "range", min: "0", max: "255", onChange: this.props.update})));
         };
         return Slider;
     }(react_5.default.Component));
