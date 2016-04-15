@@ -5,10 +5,10 @@ class App extends React.Component<any, any> {
     // refs needs to be redefined to include red, green, and blue in order to satisfy the TypeScript compiler
     // in the update method
     refs: {
-        [key: string]: (React.ReactInstance);
-        red: (Slider);
-        green: (Slider);
-        blue: (Slider);
+        [key: string]: React.ReactInstance;
+        red: Slider;
+        green: Slider;
+        blue: Slider;
     }
 
     constructor() {
@@ -44,8 +44,8 @@ class Slider extends React.Component<any, any> {
     // refs needs to be redefined to include inp in order to satisfy the TypeScript compiler
     // in the App.update method
     refs: {
-        [key: string]: (React.ReactInstance);
-        inp: (HTMLInputElement);
+        [key: string]: React.ReactInstance;
+        inp: HTMLInputElement;
     }
 
     render() {
