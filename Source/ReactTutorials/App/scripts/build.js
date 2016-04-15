@@ -125,7 +125,7 @@ define("react-fundamentals/t7", ["require", "exports", 'react', 'react-dom'], fu
             });
         };
         App.prototype.render = function () {
-            return (react_5.default.createElement("div", null, react_5.default.createElement(Slider, {ref: "red", update: this.update}), react_5.default.createElement(Slider, {ref: "green", update: this.update}), react_5.default.createElement(Slider, {ref: "blue", update: this.update})));
+            return (react_5.default.createElement("div", null, react_5.default.createElement(Slider, {ref: "red", update: this.update}), react_5.default.createElement("span", null, this.state.red), react_5.default.createElement("br", null), react_5.default.createElement(Slider, {ref: "green", update: this.update}), react_5.default.createElement("span", null, this.state.green), react_5.default.createElement("br", null), react_5.default.createElement(Slider, {ref: "blue", update: this.update}), react_5.default.createElement("span", null, this.state.blue), react_5.default.createElement("br", null)));
         };
         return App;
     }(react_5.default.Component));

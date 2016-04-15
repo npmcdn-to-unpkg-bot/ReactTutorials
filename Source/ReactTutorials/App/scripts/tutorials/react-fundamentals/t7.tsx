@@ -30,9 +30,9 @@ class App extends React.Component<any, any> {
     render() {
         return (
             <div>
-                <Slider ref="red" update={this.update} />
-                <Slider ref="green" update={this.update} />
-                <Slider ref="blue" update={this.update} />
+                <Slider ref="red" update={this.update} /><span>{this.state.red}</span><br />
+                <Slider ref="green" update={this.update} /><span>{this.state.green}</span><br />
+                <Slider ref="blue" update={this.update} /><span>{this.state.blue}</span><br />
             </div>
         );
     }
