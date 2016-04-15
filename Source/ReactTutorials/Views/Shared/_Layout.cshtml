@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    @RenderBody()
+
+    <script src="~/App/scripts/lib/react/react.js"></script>
+    <script src="~/App/scripts/lib/react/react-dom.js"></script>
+    <script src="~/App/scripts/lib/core-js/shim.js"></script>
+
+    <!-- Simple replacement for requirejs for loading AMD modules synchronously -->
+    <script src="~/App/scripts/lib/simple-require.js"></script>
+
+    <!-- Load the application -->
+    <script src="~/App/scripts/build.js"></script>
+    <script src="~/App/scripts/index.js"></script>
+
+
+    <!-- Render any additional scripts -->
+    @RenderSection("Scripts", true)
+</body>
+</html>
