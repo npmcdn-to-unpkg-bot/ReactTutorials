@@ -164,6 +164,9 @@
     <TypeScriptCompile Include="App\scripts\tutorials\react-fundamentals\t5.tsx" />
     <TypeScriptCompile Include="App\scripts\tutorials\react-fundamentals\t6.tsx" />
     <TypeScriptCompile Include="App\scripts\tutorials\react-fundamentals\t7.tsx" />
+    <TypeScriptCompile Include="App\scripts\tutorials\react-fundamentals\t8.tsx" />
+    <TypeScriptCompile Include="App\scripts\tutorials\react-fundamentals\t10.tsx" />
+    <TypeScriptCompile Include="App\scripts\tutorials\react-fundamentals\t9.tsx" />
     <TypeScriptCompile Include="App\scripts\tutorials\redux\t0.tsx" />
   </ItemGroup>
   <ItemGroup>
