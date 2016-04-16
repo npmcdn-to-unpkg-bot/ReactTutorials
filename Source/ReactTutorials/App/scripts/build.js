@@ -51,7 +51,79 @@ define("react-fundamentals/t10", ["require", "exports", 'react', 'react-dom'], f
     }
     exports.run = run;
 });
-define("react-fundamentals/t2", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_2, react_dom_2) {
+define("react-fundamentals/t11", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_2, react_dom_2) {
+    "use strict";
+    var App = (function (_super) {
+        __extends(App, _super);
+        function App() {
+            _super.call(this);
+            this.update = this.update.bind(this);
+            this.state = { increasing: false };
+        }
+        App.prototype.update = function () {
+            react_dom_2.default.render(react_2.default.createElement(App, {val: this.props.val + 1}), document.getElementById('appMount'));
+        };
+        App.prototype.componentWillReceiveProps = function (nextProps) {
+            this.setState({ increasing: nextProps.val > this.props.val });
+        };
+        App.prototype.shouldComponentUpdate = function (nextProps, nextState) {
+            return nextProps.val % 5 === 0;
+        };
+        App.prototype.render = function () {
+            return (react_2.default.createElement("button", {onClick: this.update}, this.props.val));
+        };
+        App.prototype.componentDidUpdate = function (prevProps, prevState) {
+            console.log('prevProps', prevProps);
+        };
+        return App;
+    }(react_2.default.Component));
+    App.defaultProps = { val: 0 };
+    function run() {
+        react_dom_2.default.render(react_2.default.createElement(App, null), document.getElementById('appMount'));
+    }
+    exports.run = run;
+});
+define("react-fundamentals/t12", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_3, react_dom_3) {
+    "use strict";
+    var Mixin = function (InnerComponent) { return (function (_super) {
+        __extends(class_1, _super);
+        function class_1() {
+            _super.call(this);
+            this.update = this.update.bind(this);
+            this.state = { val: 0 };
+        }
+        class_1.prototype.update = function () {
+            this.setState({ val: this.state.val + 1 });
+        };
+        class_1.prototype.componentWillMount = function () {
+            console.log('will mount');
+        };
+        class_1.prototype.render = function () {
+            return (react_3.default.createElement(InnerComponent, react_3.default.__spread({update: this.update}, this.state, this.props)));
+        };
+        class_1.prototype.componentDidMount = function () {
+            console.log('mounted');
+        };
+        return class_1;
+    }(react_3.default.Component)); };
+    var Button = function (props) { return react_3.default.createElement("button", {onClick: props.update}, props.txt, " - ", props.val); };
+    var ButtonMixed = Mixin(Button);
+    var App = (function (_super) {
+        __extends(App, _super);
+        function App() {
+            _super.apply(this, arguments);
+        }
+        App.prototype.render = function () {
+            return (react_3.default.createElement("div", null, react_3.default.createElement(ButtonMixed, {txt: "Button"})));
+        };
+        return App;
+    }(react_3.default.Component));
+    function run() {
+        react_dom_3.default.render(react_3.default.createElement(App, null), document.getElementById('appMount'));
+    }
+    exports.run = run;
+});
+define("react-fundamentals/t2", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_4, react_dom_4) {
     "use strict";
     // class component, which can have state
     var App = (function (_super) {
@@ -60,18 +132,18 @@ define("react-fundamentals/t2", ["require", "exports", 'react', 'react-dom'], fu
             _super.apply(this, arguments);
         }
         App.prototype.render = function () {
-            return react_2.default.createElement("h1", null, "Hello World");
+            return react_4.default.createElement("h1", null, "Hello World");
         };
         return App;
-    }(react_2.default.Component));
+    }(react_4.default.Component));
     // stateless function components
-    var App2 = function () { return react_2.default.createElement("h1", null, "Hello Stateless Fuction"); };
+    var App2 = function () { return react_4.default.createElement("h1", null, "Hello Stateless Fuction"); };
     function run() {
-        react_dom_2.default.render(react_2.default.createElement("div", null, react_2.default.createElement(App, null), react_2.default.createElement(App2, null)), document.getElementById('appMount'));
+        react_dom_4.default.render(react_4.default.createElement("div", null, react_4.default.createElement(App, null), react_4.default.createElement(App2, null)), document.getElementById('appMount'));
     }
     exports.run = run;
 });
-define("react-fundamentals/t4", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_3, react_dom_3) {
+define("react-fundamentals/t4", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_5, react_dom_5) {
     "use strict";
     var App = (function (_super) {
         __extends(App, _super);
@@ -80,14 +152,14 @@ define("react-fundamentals/t4", ["require", "exports", 'react', 'react-dom'], fu
         }
         App.prototype.render = function () {
             var txt = this.props.txt;
-            return react_3.default.createElement("h1", null, txt);
+            return react_5.default.createElement("h1", null, txt);
         };
         return App;
-    }(react_3.default.Component));
+    }(react_5.default.Component));
     // if we want run-time validation using react PropTypes, we need to do the following:
     App.propTypes = {
-        txt: react_3.default.PropTypes.string,
-        cat: react_3.default.PropTypes.number.isRequired
+        txt: react_5.default.PropTypes.string,
+        cat: react_5.default.PropTypes.number.isRequired
     };
     // in this case, if cat is not set, a runtime warning is generated:
     // Warning: Failed propType: Required prop `cat` was not specified in `App`.
@@ -99,11 +171,11 @@ define("react-fundamentals/t4", ["require", "exports", 'react', 'react-dom'], fu
         txt: 'this is the default txt'
     };
     function run() {
-        react_dom_3.default.render(react_3.default.createElement(App, {cat: 5}), document.getElementById('appMount'));
+        react_dom_5.default.render(react_5.default.createElement(App, {cat: 5}), document.getElementById('appMount'));
     }
     exports.run = run;
 });
-define("react-fundamentals/t5", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_4, react_dom_4) {
+define("react-fundamentals/t5", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_6, react_dom_6) {
     "use strict";
     var App = (function (_super) {
         __extends(App, _super);
@@ -118,16 +190,16 @@ define("react-fundamentals/t5", ["require", "exports", 'react', 'react-dom'], fu
             this.setState({ txt: e.target.value });
         };
         App.prototype.render = function () {
-            return (react_4.default.createElement("div", null, react_4.default.createElement("input", {type: "text", onChange: this.update.bind(this)}), react_4.default.createElement("h1", null, this.state.txt)));
+            return (react_6.default.createElement("div", null, react_6.default.createElement("input", {type: "text", onChange: this.update.bind(this)}), react_6.default.createElement("h1", null, this.state.txt)));
         };
         return App;
-    }(react_4.default.Component));
+    }(react_6.default.Component));
     function run() {
-        react_dom_4.default.render(react_4.default.createElement(App, null), document.getElementById('appMount'));
+        react_dom_6.default.render(react_6.default.createElement(App, null), document.getElementById('appMount'));
     }
     exports.run = run;
 });
-define("react-fundamentals/t6", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_5, react_dom_5) {
+define("react-fundamentals/t6", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_7, react_dom_7) {
     "use strict";
     var App = (function (_super) {
         __extends(App, _super);
@@ -140,19 +212,19 @@ define("react-fundamentals/t6", ["require", "exports", 'react', 'react-dom'], fu
             this.setState({ txt: e.target.value });
         };
         App.prototype.render = function () {
-            return (react_5.default.createElement("div", null, react_5.default.createElement(Widget, {txt: this.state.txt, update: this.update}), react_5.default.createElement(Widget, {txt: this.state.txt, update: this.update}), react_5.default.createElement(Widget, {txt: this.state.txt, update: this.update}), react_5.default.createElement(Widget, {txt: this.state.txt, update: this.update})));
+            return (react_7.default.createElement("div", null, react_7.default.createElement(Widget, {txt: this.state.txt, update: this.update}), react_7.default.createElement(Widget, {txt: this.state.txt, update: this.update}), react_7.default.createElement(Widget, {txt: this.state.txt, update: this.update}), react_7.default.createElement(Widget, {txt: this.state.txt, update: this.update})));
         };
         return App;
-    }(react_5.default.Component));
+    }(react_7.default.Component));
     var Widget = function (props) {
-        return (react_5.default.createElement("div", null, react_5.default.createElement("input", {type: "text", onChange: props.update}), react_5.default.createElement("h1", null, props.txt)));
+        return (react_7.default.createElement("div", null, react_7.default.createElement("input", {type: "text", onChange: props.update}), react_7.default.createElement("h1", null, props.txt)));
     };
     function run() {
-        react_dom_5.default.render(react_5.default.createElement(App, null), document.getElementById('appMount'));
+        react_dom_7.default.render(react_7.default.createElement(App, null), document.getElementById('appMount'));
     }
     exports.run = run;
 });
-define("react-fundamentals/t7", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_6, react_dom_6) {
+define("react-fundamentals/t7", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_8, react_dom_8) {
     "use strict";
     var App = (function (_super) {
         __extends(App, _super);
@@ -167,32 +239,32 @@ define("react-fundamentals/t7", ["require", "exports", 'react', 'react-dom'], fu
         }
         App.prototype.update = function (e) {
             this.setState({
-                red: react_dom_6.default.findDOMNode(this.refs.red.refs.inp).value,
-                green: react_dom_6.default.findDOMNode(this.refs.green.refs.inp).value,
-                blue: react_dom_6.default.findDOMNode(this.refs.blue.refs.inp).value
+                red: react_dom_8.default.findDOMNode(this.refs.red.refs.inp).value,
+                green: react_dom_8.default.findDOMNode(this.refs.green.refs.inp).value,
+                blue: react_dom_8.default.findDOMNode(this.refs.blue.refs.inp).value
             });
         };
         App.prototype.render = function () {
-            return (react_6.default.createElement("div", null, react_6.default.createElement(Slider, {ref: "red", update: this.update}), react_6.default.createElement("span", null, this.state.red), react_6.default.createElement("br", null), react_6.default.createElement(Slider, {ref: "green", update: this.update}), react_6.default.createElement("span", null, this.state.green), react_6.default.createElement("br", null), react_6.default.createElement(Slider, {ref: "blue", update: this.update}), react_6.default.createElement("span", null, this.state.blue), react_6.default.createElement("br", null)));
+            return (react_8.default.createElement("div", null, react_8.default.createElement(Slider, {ref: "red", update: this.update}), react_8.default.createElement("span", null, this.state.red), react_8.default.createElement("br", null), react_8.default.createElement(Slider, {ref: "green", update: this.update}), react_8.default.createElement("span", null, this.state.green), react_8.default.createElement("br", null), react_8.default.createElement(Slider, {ref: "blue", update: this.update}), react_8.default.createElement("span", null, this.state.blue), react_8.default.createElement("br", null)));
         };
         return App;
-    }(react_6.default.Component));
+    }(react_8.default.Component));
     var Slider = (function (_super) {
         __extends(Slider, _super);
         function Slider() {
             _super.apply(this, arguments);
         }
         Slider.prototype.render = function () {
-            return (react_6.default.createElement("div", null, react_6.default.createElement("input", {ref: "inp", type: "range", min: "0", max: "255", onChange: this.props.update})));
+            return (react_8.default.createElement("div", null, react_8.default.createElement("input", {ref: "inp", type: "range", min: "0", max: "255", onChange: this.props.update})));
         };
         return Slider;
-    }(react_6.default.Component));
+    }(react_8.default.Component));
     function run() {
-        react_dom_6.default.render(react_6.default.createElement(App, null), document.getElementById('appMount'));
+        react_dom_8.default.render(react_8.default.createElement(App, null), document.getElementById('appMount'));
     }
     exports.run = run;
 });
-define("react-fundamentals/t8", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_7, react_dom_7) {
+define("react-fundamentals/t8", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_9, react_dom_9) {
     "use strict";
     var App = (function (_super) {
         __extends(App, _super);
@@ -200,27 +272,27 @@ define("react-fundamentals/t8", ["require", "exports", 'react', 'react-dom'], fu
             _super.apply(this, arguments);
         }
         App.prototype.render = function () {
-            return (react_7.default.createElement(Button, null, "I ", react_7.default.createElement(Heart, null), " React"));
+            return (react_9.default.createElement(Button, null, "I ", react_9.default.createElement(Heart, null), " React"));
         };
         return App;
-    }(react_7.default.Component));
+    }(react_9.default.Component));
     var Button = (function (_super) {
         __extends(Button, _super);
         function Button() {
             _super.apply(this, arguments);
         }
         Button.prototype.render = function () {
-            return (react_7.default.createElement("button", null, this.props.children));
+            return (react_9.default.createElement("button", null, this.props.children));
         };
         return Button;
-    }(react_7.default.Component));
-    var Heart = function () { return react_7.default.createElement("span", null, "<3"); };
+    }(react_9.default.Component));
+    var Heart = function () { return react_9.default.createElement("span", null, "<3"); };
     function run() {
-        react_dom_7.default.render(react_7.default.createElement(App, null), document.getElementById('appMount'));
+        react_dom_9.default.render(react_9.default.createElement(App, null), document.getElementById('appMount'));
     }
     exports.run = run;
 });
-define("react-fundamentals/t9", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_8, react_dom_8) {
+define("react-fundamentals/t9", ["require", "exports", 'react', 'react-dom'], function (require, exports, react_10, react_dom_10) {
     "use strict";
     var App = (function (_super) {
         __extends(App, _super);
@@ -237,7 +309,7 @@ define("react-fundamentals/t9", ["require", "exports", 'react', 'react-dom'], fu
         };
         App.prototype.render = function () {
             console.log('rendering!');
-            return (react_8.default.createElement("button", {onClick: this.update}, this.state.val));
+            return (react_10.default.createElement("button", {onClick: this.update}, this.state.val));
         };
         App.prototype.componentDidMount = function () {
             console.log('mounted');
@@ -246,25 +318,25 @@ define("react-fundamentals/t9", ["require", "exports", 'react', 'react-dom'], fu
             console.log('bye!');
         };
         return App;
-    }(react_8.default.Component));
+    }(react_10.default.Component));
     var Wrapper = (function (_super) {
         __extends(Wrapper, _super);
         function Wrapper() {
             _super.call(this);
         }
         Wrapper.prototype.mount = function () {
-            react_dom_8.default.render(react_8.default.createElement(App, null), document.getElementById('a'));
+            react_dom_10.default.render(react_10.default.createElement(App, null), document.getElementById('a'));
         };
         Wrapper.prototype.unmount = function () {
-            react_dom_8.default.unmountComponentAtNode(document.getElementById('a'));
+            react_dom_10.default.unmountComponentAtNode(document.getElementById('a'));
         };
         Wrapper.prototype.render = function () {
-            return (react_8.default.createElement("div", null, react_8.default.createElement("button", {onClick: this.mount.bind(this)}, "Mount"), react_8.default.createElement("button", {onClick: this.unmount.bind(this)}, "Unmount"), react_8.default.createElement("div", {id: "a"})));
+            return (react_10.default.createElement("div", null, react_10.default.createElement("button", {onClick: this.mount.bind(this)}, "Mount"), react_10.default.createElement("button", {onClick: this.unmount.bind(this)}, "Unmount"), react_10.default.createElement("div", {id: "a"})));
         };
         return Wrapper;
-    }(react_8.default.Component));
+    }(react_10.default.Component));
     function run() {
-        react_dom_8.default.render(react_8.default.createElement(Wrapper, null), document.getElementById('appMount'));
+        react_dom_10.default.render(react_10.default.createElement(Wrapper, null), document.getElementById('appMount'));
     }
     exports.run = run;
 });

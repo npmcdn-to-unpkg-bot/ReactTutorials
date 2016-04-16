@@ -159,6 +159,7 @@
     <TypeScriptCompile Include="App\scripts\lib\react\react-dom.d.ts" />
     <TypeScriptCompile Include="App\scripts\lib\react\react.d.ts" />
     <TypeScriptCompile Include="App\scripts\lib\redux\redux.d.ts" />
+    <TypeScriptCompile Include="App\scripts\tutorials\react-fundamentals\t12.tsx" />
     <TypeScriptCompile Include="App\scripts\tutorials\react-fundamentals\t2.tsx" />
     <TypeScriptCompile Include="App\scripts\tutorials\react-fundamentals\t4.tsx" />
     <TypeScriptCompile Include="App\scripts\tutorials\react-fundamentals\t5.tsx" />
@@ -166,6 +167,7 @@
     <TypeScriptCompile Include="App\scripts\tutorials\react-fundamentals\t7.tsx" />
     <TypeScriptCompile Include="App\scripts\tutorials\react-fundamentals\t8.tsx" />
     <TypeScriptCompile Include="App\scripts\tutorials\react-fundamentals\t10.tsx" />
+    <TypeScriptCompile Include="App\scripts\tutorials\react-fundamentals\t11.tsx" />
     <TypeScriptCompile Include="App\scripts\tutorials\react-fundamentals\t9.tsx" />
     <TypeScriptCompile Include="App\scripts\tutorials\redux\t0.tsx" />
   </ItemGroup>
